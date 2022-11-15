@@ -3,16 +3,14 @@ package sageniuz;
 import jakarta.persistence.Persistence;
 import sageniuz.model.Message;
 
-
 public class App {
     public static void main(String[] args) {
         var emFactory = Persistence.createEntityManagerFactory("helloworld");
         var em = emFactory.createEntityManager();
         em.getTransaction().begin();
         var msg = new Message(null);
-
         em.persist(msg);
-        em.getTransaction().commit(); // ignores bean validation
+        em.getTransaction().commit();
 
         em.getTransaction().begin();
         var messages = em

@@ -3,6 +3,7 @@ package sageniuz.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ public class Message {
     @Id
     @GeneratedValue
     private Long id;
+    @NotNull
     private String text;
 
     protected Message() {
