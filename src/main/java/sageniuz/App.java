@@ -1,10 +1,8 @@
 package sageniuz;
 
-import org.hibernate.validator.messageinterpolation.ParameterMessageInterpolator;
+import jakarta.persistence.Persistence;
 import sageniuz.model.Message;
 
-import javax.persistence.Persistence;
-import javax.validation.Validation;
 
 public class App {
     public static void main(String[] args) {
@@ -12,15 +10,6 @@ public class App {
         var em = emFactory.createEntityManager();
         em.getTransaction().begin();
         var msg = new Message(null);
-
-        var validator = Validation.byDefaultProvider()
-            .configure()
-            .messageInterpolator(new ParameterMessageInterpolator())
-            .buildValidatorFactory()
-            .getValidator();
-
-        var violations = validator.validate(msg);
-        System.out.println("====> " + violations); // shows constraint violation
 
         em.persist(msg);
         em.getTransaction().commit(); // ignores bean validation
