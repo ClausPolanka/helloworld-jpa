@@ -8,7 +8,8 @@ public class App {
         var emFactory = Persistence.createEntityManagerFactory("helloworld");
         var em = emFactory.createEntityManager();
         em.getTransaction().begin();
-        var msg = new Message(null);
+        // var msg = new Message(null); // throws ConstraintViolationException
+        var msg = new Message("Hello World");
         em.persist(msg);
         em.getTransaction().commit();
 
